@@ -1,8 +1,9 @@
 import { CalligraphersGrid } from '@/components/calligraphers-grid';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Calligraphers - Tieku',
   description: 'Browse Chinese calligraphers by era and style',
 };

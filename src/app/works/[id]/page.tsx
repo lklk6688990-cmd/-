@@ -1,11 +1,8 @@
+'use client';
+
 import { WorkDetail } from '@/components/work-detail';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'Work - Tieku',
-  description: 'View detailed work information and high-resolution images',
-};
 
 export default function WorkPage({
   params,

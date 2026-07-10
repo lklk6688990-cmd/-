@@ -1,11 +1,8 @@
+'use client';
+
 import { CalligrapherDetail } from '@/components/calligrapher-detail';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-
-export const metadata = {
-  title: 'Calligrapher - Tieku',
-  description: 'View calligrapher details and works',
-};
 
 export default function CalligrapherPage({
   params,

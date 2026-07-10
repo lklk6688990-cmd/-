@@ -1,8 +1,9 @@
 import { WorksGrid } from '@/components/works-grid';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { Metadata } from 'next';
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Works - Tieku',
   description: 'Browse all calligraphy works',
 };
