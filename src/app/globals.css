@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+    --border: 0 0% 14%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 14%;
+    --secondary-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.5rem;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-black/50 backdrop-blur-sm border border-white/10;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent;
+  }
+
+  .btn-primary {
+    @apply px-4 py-2 bg-white text-black rounded hover:bg-gray-200 transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-4 py-2 bg-gray-800 text-white rounded border border-gray-700 hover:bg-gray-700 transition-colors;
+  }
+}
+
+/* OpenSeadragon overrides */
+.openseadragon-container {
+  @apply bg-black;
+}
+
+.openseadragon-controls {
+  @apply top-4 right-4;
+}
+
+.openseadragon-controls button {
+  @apply bg-white/10 hover:bg-white/20 border border-white/20 text-white;
+}

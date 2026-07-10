@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Calligrapher {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  enName    String?
+  dynasty   String
+  biography String?
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  works Work[]
+
+  @@index([dynasty])
+}
+
+model Dynasty {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  startYear Int?
+  endYear   Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ScriptStyle {
+  id        Int     @id @default(autoincrement())
+  name      String  @unique
+  description String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  works Work[]
+
+  @@index([name])
+}
+
+model Work {
+  id            Int      @id @default(autoincrement())
+  title         String
+  author        String
+  calligrapherId Int
+  calligrapher  Calligrapher @relation(fields: [calligrapherId], references: [id], onDelete: Cascade)
+  dynasty       String
+  scriptId      Int
+  script        ScriptStyle @relation(fields: [scriptId], references: [id])
+  words         String
+  width         Float?
+  height        Float?
+  description   String?
+  museum        String?
+  imageUrls     String    @default("[]")  // JSON array stored as string
+  isFavorite    Boolean   @default(false)
+  viewCount     Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  viewHistory ViewHistory[]
+
+  @@index([calligrapherId])
+  @@index([scriptId])
+  @@index([dynasty])
+  @@fulltext([title, words])
+}
+
+model ViewHistory {
+  id        Int     @id @default(autoincrement())
+  workId    Int
+  work      Work    @relation(fields: [workId], references: [id], onDelete: Cascade)
+  viewedAt  DateTime @default(now())
+
+  @@index([workId])
+  @@index([viewedAt])
+}
