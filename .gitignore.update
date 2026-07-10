@@ -1,0 +1,4 @@
+# Add these to .gitignore
+.env
+.env.local
+.env.local.example.backup
